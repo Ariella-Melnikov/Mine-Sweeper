@@ -16,11 +16,12 @@ var gTimerInterval
 var gStartTime
 var gLivesCount
 var gFlagCount = 0
+var gHintCount = 3
 
 
 gLevel = {
     size: 4,
-    mines: 3
+    mines: 1
 }
 
 function onInit() {
@@ -34,7 +35,8 @@ function onInit() {
     updateMineCount(0)
     gFlagCount = 0
     updateFlagCount(0)
-    addHint(3)
+    gHintCount = 3
+
 
     gBoard = buildBoard()
     renderBoard(gBoard)
@@ -42,7 +44,8 @@ function onInit() {
     resetTimer()
     updateLivesCount(0, true)
     document.querySelector('.restart-btn').innerText = RESTART_NORMAL
-
+    displayStoredUserInfo()
+    addHint()
 
 }
 
@@ -56,7 +59,8 @@ function buildBoard() {
                 isShown: false,
                 isMine: false,
                 isMarked: false,
-                gameElement: null
+                gameElement: null,
+                hintActive: false
             }
 
         }
@@ -104,6 +108,12 @@ function cellClicked(event) {
     const cellJ = parseInt(cell.getAttribute('data-j'))
     const buttonClicked = event.button
     console.log('buttonClicked', buttonClicked)
+
+    // if (gGame.hintActive) {
+    //     revealCellAndNeighbors(cellI, cellJ)
+    //     gGame.hintActive = false
+    //     return
+    // }
 
     if (buttonClicked === 2) {
         event.preventDefault()
@@ -176,13 +186,19 @@ function renderCell(location, value) {
 
 function checkVictory() {
     if (gMinesCount > 0) {
-        return false;
+        return false
     }
-    alert('Yayyyy!!! you won! what a chemp')
+
+    alert('Yayyyy!!! you won! What a champ!')
     document.querySelector('.restart-btn').innerText = RESTART_WIN
     revealAllCells()
-
+    var victoryTime = updateTimer()
+    console.log(victoryTime, 'victoryTime')
+    storeUserInfo()
+    clearInterval(gTimerInterval)
+    console.log('clearInterval', clearInterval)
     return true
+
 }
 
 function gameOver() {
@@ -195,6 +211,7 @@ function gameOver() {
 function updateTimer() {
     var elapsedTime = Math.floor((Date.now() - gStartTime) / 1000)
     document.getElementById('timer').innerText = elapsedTime
+    return elapsedTime
 }
 
 function resetTimer() {
@@ -202,15 +219,7 @@ function resetTimer() {
     document.getElementById('timer').innerText = 0
     gGame.secsPassed = 0
 }
-// function gameOver() {
-//     console.log('Game Over')
-//     clearInterval(gGhostsInterval)
-//     clearInterval(gCherryInterval)
-//     gGame.isOn = false
-//     renderCell(gPacman.location, EMPTY)
-//     var msg = gGame.isVictory ? 'You Won!!!' : 'Game Over'
-//     openModal(msg)
-// }
+
 function updateLivesCount(diff, reset = false) {
     if (reset) {
         gLivesCount = 2
@@ -220,17 +229,10 @@ function updateLivesCount(diff, reset = false) {
     document.querySelector('h2.lives-left span').innerText = gLivesCount
 }
 
-// function updateFlagCount(diff, reset = false) {
-//     if (reset) {
-//         gFlagCount = gLevel.mines
-//     } else {
-//         gFlagCount += diff
-//     }
-//     document.querySelector('h2.total-flag span').innerText = gFlagCount
-// }
-
 function updateFlagCount(diff) {
+    
     gFlagCount += diff
+    console.log('flagCount', gFlagCount)
     document.querySelector('h2.total-flag span').innerText = gFlagCount
 }
 
@@ -245,21 +247,4 @@ function revealAllCells() {
         }
     }
 }
-function addHint(num) {
-    var hintElement = document.querySelector('.hint')
-    for (var i = 0; i < num ; i++ ) {
-        hintElement.innerText += HINT
-        hintElement.addEventListener('click', handleHintClick)
-    }      
-}
 
-function handleHintClick() {
-    this.style.backgroundColor = 'yellow'
-
-    revealCellAndNeighbors()
-
-    setTimeout(() => {
-        this.style.display = 'none'
-    }, 1000)
-
-}

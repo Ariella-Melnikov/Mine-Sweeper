@@ -30,21 +30,17 @@ function initMinesInBoard(cellI, cellJ) {
     gGame.isOn = true
     gStartTime = Date.now()
     gTimerInterval = setInterval(updateTimer, 1000)
+    addHint()
 }
 
 function handleMineClicked(cellI, cellJ) {
     if (gLivesCount !== 0) {
-        // console.log('-live',gLivesCount )
         updateLivesCount(-1)
         updateMineCount(-1)
         renderMineCell({ i: cellI, j: cellJ })
 
-        // console.log('gMinesCount', gMinesCount)
     }
     if (gLivesCount === 0) {
-        // console.log('No lives', gLivesCount)
-        // console.log('gMinesCount', gMinesCount)
-
         gGame.isOn = false
         renderMineCell({ i: cellI, j: cellJ })
         revelAllMines()
@@ -75,7 +71,6 @@ function revelAllMines() {
 function updateMineCount(diff) {
     gMinesCount += diff
     console.log('gMinesCount', gMinesCount)
-    // document.querySelector('h2 span').innerText = gMinesCount
 }
 
 function placeMine(board, i, j) {
