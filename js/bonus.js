@@ -88,28 +88,30 @@ function displayStoredUserInfo() {
 }
 
 function fullExpand(cellI, cellJ) {
-    console.log('is it enter the full Expand?')
+//     console.log('is it enter the full Expand?')
 
-    if (cellI < 0 || cellI >= gLevel.size || cellJ < 0 || cellJ >= gLevel.size) return
-    var cell = gBoard[cellI][cellJ]
-    if (cell.isShown) return
+//     if (cellI < 0 || cellI >= gLevel.size || cellJ < 0 || cellJ >= gLevel.size) return
+//     var cell = gBoard[cellI][cellJ]
 
-  
+//     // console.log('do i stop? ')
+//     // if (cell.isShown) return
 
-    if (cell.minesAroundCount !== 0) return
+//     // console.log('do i got here? ')
 
-    while (cell.minesAroundCount === 0) {
-        cell.isShown = true
-        renderCell({ i: cellI, j: cellJ }, cell.minesAroundCount === 0 ? EMPTY : cell.minesAroundCount)
 
-        // Recursively expand to all neighboring cells
-        for (var i = cellI - 1; i <= cellI + 1; i++) {
-            for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-                if (i !== cellI || j !== cellJ) {
-                    fullExpand(i, j)
-                }
+//     cell.isShown = true
+//     renderCell({ i: cellI, j: cellJ }, cell.minesAroundCount === 0 ? EMPTY : cell.minesAroundCount)
+//     if(cell.minesAroundCount !== 0 ) return
 
-            }
-        }
-    }
+//     // Recursively expand to all neighboring cells
+//     for (var i = cellI - 1; i <= cellI + 1; i++) {
+//         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+            
+//             if ( i !== cellI || j !== cellJ) {
+//                 fullExpand(i, j)
+//             }
+
+//         }
+//     }
+    
 }
