@@ -10,13 +10,13 @@ const HINT = '💡'
 
 var gGame
 var gBoard
-var gMinesCount 
+var gMinesCount
 var gLevel
 var gTimerInterval
 var gStartTime
 var gLivesCount
 var gFlagCount = 0
-var gHints 
+var gHints
 
 
 gLevel = {
@@ -48,14 +48,13 @@ function onInit() {
     resetTimer()
     updateLivesCount(0, true)
     restartGame(RESTART_NORMAL)
-    
+
     displayStoredUserInfo()
     addHintBtns(gHints.numOfHints)
 
 }
 
 function gameDifficulty(size, mines) {
-    console.log('gamedifficulty')
     gLevel.mines = mines
     gLevel.size = size
     onInit()
@@ -115,7 +114,6 @@ function cellClicked(event) {
     const cellI = parseInt(cell.getAttribute('data-i'))
     const cellJ = parseInt(cell.getAttribute('data-j'))
     const buttonClicked = event.button
-    console.log('buttonClicked', buttonClicked)
 
     if (gGame.hintActive) {
         revealCellAndNeighbors(cellI, cellJ)
@@ -142,14 +140,11 @@ function onCellClicked(cellI, cellJ, mouseButton) {
         if (!gGame.isOn) return
 
         if (gHints.hintActive) {
-            console.log('hintActive true')
-
             gHints.numOfHints--
             revealCellAndNeighbors(cellI, cellJ)
             addHintBtns(gHints.numOfHints)
             gHints.hintActive = false
             return
-            
         }
 
         currCell.isShown = true
@@ -157,12 +152,12 @@ function onCellClicked(cellI, cellJ, mouseButton) {
             handleMineClicked(cellI, cellJ)
         } else {
             renderCell({ i: cellI, j: cellJ }, currCell.minesAroundCount === 0 ? EMPTY : currCell.minesAroundCount)
-        
+
             if (currCell.minesAroundCount === 0) {
                 fullExpand(cellI, cellJ)
             }
         }
-        
+
     } else if (mouseButton === "right") {
         onCellMarked(cellI, cellJ)
     }
@@ -252,9 +247,8 @@ function updateLivesCount(diff, reset = false) {
 }
 
 function updateFlagCount(diff) {
-    
+
     gFlagCount += diff
-    console.log('flagCount', gFlagCount)
     document.querySelector('h2.total-flag span').innerText = gFlagCount
 }
 
@@ -272,7 +266,4 @@ function revealAllCells() {
 
 function restartGame(msg) {
     document.querySelector('.restart-btn').innerText = msg
-    //gameDifficulty(size, mines)
-    //onInit()
-
 }

@@ -14,6 +14,7 @@ h1 {
     margin: 20px 0;
     color: #333;
 }
+
 table {
     border-collapse: collapse;
     margin: 20px auto;
@@ -36,12 +37,13 @@ table {
     transition: background-color 0.3s;
 
 }
+
 .cell.not-showed {
-    background-color: #d0d0d0; /* Set the background color for cells where isMarked is false */
+    background-color: #d0d0d0;
 }
 
 .cell.showed {
-    background-color: hsl(315, 29%, 97%); /* Default color for marked cells */
+    background-color: hsl(315, 29%, 97%);
 }
 
 .cell:hover {
