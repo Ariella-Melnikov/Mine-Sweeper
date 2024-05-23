@@ -12,20 +12,22 @@
     <h1>Mine Sweeper</h1>
     <h2 class="total-flag">Total Flags:<span>0</span></h2>
     <h2>Time: <span id="timer">0</span></h2>
+    <h2 class="lives-left"><span>3</span> Lives left</h2>
     <div class="user-info">
         <input type="text" class="username" placeholder="Enter your username">
         <button onclick="storeUserInfo()">Save Username</button>
     </div>
     <div class="hints">
         <button class="hint1">💡</button>
-        <button class="hint2">💡</button>
-        <button class="hint3">💡</button>
     </div>
-    <h2 class="lives-left"><span>3</span> Lives left</h2>
-
     <div class="modal">
         <h3 class="msg"></h3>
         <button class="restart-btn" onclick="onInit()">🙂</button>
+    </div>
+    <div class="display-buttons" style="display: block;">
+        <button onclick="gameDifficulty(4, 2)">Beginner </button>
+        <button onclick="gameDifficulty(8, 10)">Medium</button>
+        <button onclick="gameDifficulty(12, 30)">Expert</button>
     </div>
     <div class="result"></div>
     <table>

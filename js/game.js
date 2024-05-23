@@ -10,18 +10,18 @@ const HINT = '💡'
 
 var gGame
 var gBoard
-var gMinesCount = 0
+var gMinesCount 
 var gLevel
 var gTimerInterval
 var gStartTime
 var gLivesCount
 var gFlagCount = 0
-var gHintCount = 3
+var gHints 
 
 
 gLevel = {
-    size: 4,
-    mines: 1
+    size: 0,
+    mines: 0
 }
 
 function onInit() {
@@ -29,13 +29,17 @@ function onInit() {
         isOn: false,
         shownCount: 0,
         markedCount: 0,
-        secsPassed: 0
+        secsPassed: 0,
     }
+
     gMinesCount = 0
     updateMineCount(0)
     gFlagCount = 0
     updateFlagCount(0)
-    gHintCount = 3
+    gHints = {
+        numOfHints: 3,
+        hintActive: false
+    }
 
 
     gBoard = buildBoard()
@@ -43,10 +47,18 @@ function onInit() {
     console.table(gBoard)
     resetTimer()
     updateLivesCount(0, true)
-    document.querySelector('.restart-btn').innerText = RESTART_NORMAL
+    restartGame(RESTART_NORMAL)
+    
     displayStoredUserInfo()
-    addHint()
+    addHintBtns(gHints.numOfHints)
 
+}
+
+function gameDifficulty(size, mines) {
+    console.log('gamedifficulty')
+    gLevel.mines = mines
+    gLevel.size = size
+    onInit()
 }
 
 function buildBoard() {
@@ -60,14 +72,10 @@ function buildBoard() {
                 isMine: false,
                 isMarked: false,
                 gameElement: null,
-                hintActive: false
             }
 
         }
     }
-
-    // placeMine(board, 0, 0)
-    // placeMine(board, 3, 3)
 
     return board
 }
@@ -109,11 +117,11 @@ function cellClicked(event) {
     const buttonClicked = event.button
     console.log('buttonClicked', buttonClicked)
 
-    // if (gGame.hintActive) {
-    //     revealCellAndNeighbors(cellI, cellJ)
-    //     gGame.hintActive = false
-    //     return
-    // }
+    if (gGame.hintActive) {
+        revealCellAndNeighbors(cellI, cellJ)
+        gGame.hintActive = false
+        return
+    }
 
     if (buttonClicked === 2) {
         event.preventDefault()
@@ -131,13 +139,30 @@ function onCellClicked(cellI, cellJ, mouseButton) {
 
     if (mouseButton === "left") {
         if (currCell.isMarked) return
+        if (!gGame.isOn) return
+
+        if (gHints.hintActive) {
+            console.log('hintActive true')
+
+            gHints.numOfHints--
+            revealCellAndNeighbors(cellI, cellJ)
+            addHintBtns(gHints.numOfHints)
+            gHints.hintActive = false
+            return
+            
+        }
+
         currCell.isShown = true
         if (currCell.gameElement === MINE) {
             handleMineClicked(cellI, cellJ)
         } else {
-            currCell.minesAroundCount = setMinesNegsCount(cellI, cellJ, gBoard);
             renderCell({ i: cellI, j: cellJ }, currCell.minesAroundCount === 0 ? EMPTY : currCell.minesAroundCount)
+        
+            if (currCell.minesAroundCount === 0) {
+                fullExpand(cellI, cellJ)
+            }
         }
+        
     } else if (mouseButton === "right") {
         onCellMarked(cellI, cellJ)
     }
@@ -177,7 +202,6 @@ function renderCell(location, value) {
         elCell.classList.remove('not-showed')
         elCell.classList.add('showed')
     } else {
-        // If the cell is not shown, remove the 'showed' class and add the 'not-showed' class
         elCell.classList.remove('showed')
         elCell.classList.add('not-showed')
     }
@@ -189,22 +213,20 @@ function checkVictory() {
         return false
     }
 
-    alert('Yayyyy!!! you won! What a champ!')
-    document.querySelector('.restart-btn').innerText = RESTART_WIN
-    revealAllCells()
-    var victoryTime = updateTimer()
-    console.log(victoryTime, 'victoryTime')
-    storeUserInfo()
     clearInterval(gTimerInterval)
-    console.log('clearInterval', clearInterval)
+    restartGame(RESTART_WIN)
+    revealAllCells()
+    storeUserInfo()
     return true
 
 }
 
 function gameOver() {
-    alert('Game Over! You clicked on a mine.')
     clearInterval(gTimerInterval)
-    document.querySelector('.restart-btn').innerText = RESTART_GAMEOVER
+    restartGame(RESTART_GAMEOVER)
+    revelAllMines()
+    gGame.isOn = false
+    return
 
 }
 
@@ -222,7 +244,7 @@ function resetTimer() {
 
 function updateLivesCount(diff, reset = false) {
     if (reset) {
-        gLivesCount = 2
+        gLivesCount = 3
     } else {
         gLivesCount += diff
     }
@@ -248,3 +270,9 @@ function revealAllCells() {
     }
 }
 
+function restartGame(msg) {
+    document.querySelector('.restart-btn').innerText = msg
+    //gameDifficulty(size, mines)
+    //onInit()
+
+}

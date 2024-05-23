@@ -27,10 +27,11 @@ function initMinesInBoard(cellI, cellJ) {
         return initMinesInBoard(cellI, cellJ)
     }
 
+
     gGame.isOn = true
     gStartTime = Date.now()
     gTimerInterval = setInterval(updateTimer, 1000)
-    addHint()
+    // addHintBtns()
 }
 
 function handleMineClicked(cellI, cellJ) {
@@ -45,6 +46,7 @@ function handleMineClicked(cellI, cellJ) {
         renderMineCell({ i: cellI, j: cellJ })
         revelAllMines()
         gameOver()
+        return
     }
 
 }
@@ -85,10 +87,14 @@ function addMines(amountOfMinesToAdd, board) {
         var emptyCell = findEmptyPos(board)
         if (!emptyCell) return
         placeMine(board, emptyCell.i, emptyCell.j)
-        setMinesNegsCount(emptyCell.i, emptyCell.j, board)
-        // updateFlagCount(1)
+    }
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            board[i][j].minesAroundCount=setMinesNegsCount(i, j, board)
+        }
     }
 }
+
 
 function findEmptyPos(board) {
     var emptyPoss = []

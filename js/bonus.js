@@ -1,23 +1,24 @@
 'use strict'
 
-function addHint() {
-    var hintButtons = document.querySelectorAll('.hints button')
+function addHintBtns(numHints) {
+    console.log('addHints called?')
+    var hintContainer = document.querySelector('.hints')
+    hintContainer.innerHTML = '' // Clear existing buttons
 
-    hintButtons.forEach(function (hintButton) {
-        hintButton.innerText = HINT;
-        hintButton.addEventListener('click', handleHintClick);
-    })
+    for (var i = 0; i < numHints; i++) {
+        var elHintButton = document.createElement('button' + i + 1)
+        elHintButton.innerText = HINT
+        elHintButton.addEventListener('click', handleHintClick)
+        hintContainer.appendChild(elHintButton)
+    }
 }
 
-function handleHintClick() {
-    if (gHintCount <= 0) return
-    this.style.backgroundColor = 'yellow'
-    gGame.hintActive = true
-    gHintCount--
 
-    setTimeout(() => {
-        this.style.display = 'none'
-    }, 1000)
+
+function handleHintClick() {
+    if (gHints <= 0) return
+    this.style.backgroundColor = 'yellow'
+    gHints.hintActive = true
 
 }
 
@@ -26,10 +27,16 @@ function revealCellAndNeighbors(cellI, cellJ) {
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
             if (i >= 0 && i < gLevel.size && j >= 0 && j < gLevel.size) {
-                var neighborCell = gBoard[i][j]
-                if (!neighborCell.isShown) {
-                    neighborCell.isShown = true
-                    renderCell({ i: i, j: j }, neighborCell.gameElement)
+                var currCell = gBoard[i][j]
+                if (!currCell.isShown) {
+                    currCell.isShown = true
+
+                    var cellValue = currCell.gameElement
+                    if (cellValue != MINE && currCell.minesAroundCount > 0) {
+                        cellValue = currCell.minesAroundCount
+                    }
+
+                    renderCell({ i: i, j: j }, cellValue)
                     cellsToHide.push({ i: i, j: j })
                 }
             }
@@ -43,7 +50,7 @@ function revealCellAndNeighbors(cellI, cellJ) {
                 renderCell(cell, EMPTY)
             }
         })
-    }, 3000)
+    }, 2000)
 }
 
 function storeUserInfo() {
@@ -77,5 +84,32 @@ function displayStoredUserInfo() {
     if (storedInfo) {
         var playInfo = JSON.parse(storedInfo)
         document.querySelector('.result').innerHTML = `Last Game - Username: ${playInfo.username}, Time: ${playInfo.time} seconds`
+    }
+}
+
+function fullExpand(cellI, cellJ) {
+    console.log('is it enter the full Expand?')
+
+    if (cellI < 0 || cellI >= gLevel.size || cellJ < 0 || cellJ >= gLevel.size) return
+    var cell = gBoard[cellI][cellJ]
+    if (cell.isShown) return
+
+  
+
+    if (cell.minesAroundCount !== 0) return
+
+    while (cell.minesAroundCount === 0) {
+        cell.isShown = true
+        renderCell({ i: cellI, j: cellJ }, cell.minesAroundCount === 0 ? EMPTY : cell.minesAroundCount)
+
+        // Recursively expand to all neighboring cells
+        for (var i = cellI - 1; i <= cellI + 1; i++) {
+            for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+                if (i !== cellI || j !== cellJ) {
+                    fullExpand(i, j)
+                }
+
+            }
+        }
     }
 }

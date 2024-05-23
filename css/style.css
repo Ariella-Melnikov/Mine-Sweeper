@@ -31,10 +31,10 @@ td {
     user-select: none;
 }
 
-/* td.revealed {
+td.revealed {
     background-color: #f8f3f3;
     cursor: default;
-} */
+}
 
 td.mine {
     color: red;
@@ -45,7 +45,7 @@ td.mine {
 }
 
 .cell.not-showed {
-    background-color: #979694; /* Set the background color for cells where isMarked is false */
+    background-color: #d7d1f3; /* Set the background color for cells where isMarked is false */
 }
 
 .cell.showed {
@@ -53,7 +53,7 @@ td.mine {
 }
 
 .cell:hover {
-    background-color: #964b4b;
+    background-color: #4edab0;
 }
 
 
