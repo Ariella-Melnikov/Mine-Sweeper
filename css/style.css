@@ -1,0 +1,70 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+
+td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    background-color: #ddd;
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+}
+
+/* td.revealed {
+    background-color: #f8f3f3;
+    cursor: default;
+} */
+
+td.mine {
+    color: red;
+}
+
+.cell {
+    transition: background-color 0.3s;
+}
+
+.cell.not-showed {
+    background-color: #979694; /* Set the background color for cells where isMarked is false */
+}
+
+.cell.showed {
+    background-color: hsl(315, 29%, 97%); /* Default color for marked cells */
+}
+
+.cell:hover {
+    background-color: #964b4b;
+}
+
+
+.flagged::after {
+    content: '🚩'; 
+    color: red; 
+    font-size: 18px; 
+}
+
+.flagged::before {
+    content: 'Before Content'; 
+    color: blue; 
+    font-size: 16px; 
+}
