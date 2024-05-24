@@ -26,10 +26,11 @@ gLevel = {
 
 function onInit() {
     gGame = {
-        isOn: false,
+        isMineInit: false,
         shownCount: 0,
         markedCount: 0,
         secsPassed: 0,
+        isOn: true,
     }
 
     gMinesCount = 0
@@ -47,7 +48,7 @@ function onInit() {
     console.table(gBoard)
     resetTimer()
     updateLivesCount(0, true)
-    restartGame(RESTART_NORMAL)
+    changeRestartGameBtn(RESTART_NORMAL)
 
     displayStoredUserInfo()
     addHintBtns(gHints.numOfHints)
@@ -111,6 +112,9 @@ function getClassName(location) {
 }
 
 function cellClicked(event) {
+    
+    if (!gGame.isOn) return
+
     const cell = event.target
     const cellI = parseInt(cell.getAttribute('data-i'))
     const cellJ = parseInt(cell.getAttribute('data-j'))
@@ -137,7 +141,7 @@ function onCellClicked(cellI, cellJ, mouseButton) {
     var currCell = gBoard[cellI][cellJ]
 
     if (mouseButton === "left") {
-        if (!gGame.isOn) return
+        if (!gGame.isMineInit) return
         if (currCell.isMarked) return
 
         if (gHints.hintActive) {
@@ -210,17 +214,19 @@ function checkVictory() {
     }
 
     clearInterval(gTimerInterval)
-    restartGame(RESTART_WIN)
+    changeRestartGameBtn(RESTART_WIN)
     revealAllCells()
     storeUserInfo()
+    gGame.isOn = false
     return true
 
 }
 
 function gameOver() {
     clearInterval(gTimerInterval)
-    restartGame(RESTART_GAMEOVER)
+    changeRestartGameBtn(RESTART_GAMEOVER)
     revelAllMines()
+    gGame.isMineInit = false
     gGame.isOn = false
     return
 
@@ -265,6 +271,6 @@ function revealAllCells() {
     }
 }
 
-function restartGame(msg) {
+function changeRestartGameBtn(msg) {
     document.querySelector('.restart-btn').innerText = msg
 }

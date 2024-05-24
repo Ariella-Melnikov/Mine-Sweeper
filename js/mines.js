@@ -14,7 +14,7 @@ function setMinesNegsCount(cellI, cellJ, mat) {
 }
 
 function initMinesInBoard(cellI, cellJ) {
-    if (gGame.isOn) {
+    if (gGame.isMineInit) {
         return
     }
 
@@ -28,7 +28,7 @@ function initMinesInBoard(cellI, cellJ) {
     }
 
 
-    gGame.isOn = true
+    gGame.isMineInit = true
     gStartTime = Date.now()
     gTimerInterval = setInterval(updateTimer, 1000)
     // addHintBtns()
@@ -42,9 +42,7 @@ function handleMineClicked(cellI, cellJ) {
 
     }
     if (gLivesCount === 0) {
-        gGame.isOn = false
         renderMineCell({ i: cellI, j: cellJ })
-        revelAllMines()
         gameOver()
         return
     }

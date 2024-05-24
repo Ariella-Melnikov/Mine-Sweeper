@@ -92,7 +92,6 @@ function fullExpand(cellI, cellJ) {
     if (cellI < 0 || cellI >= gLevel.size || cellJ < 0 || cellJ >= gLevel.size) return 
     var cell = gBoard[cellI][cellJ]
 
-    console.log('cell ', cell)
     if (cell.isExpended) return
     
     cell.isShown = true
@@ -100,12 +99,10 @@ function fullExpand(cellI, cellJ) {
     renderCell({ i: cellI, j: cellJ }, cell.minesAroundCount === 0 ? EMPTY : cell.minesAroundCount)
     if(cell.minesAroundCount !== 0 ) return 
 
-    console.log('do i got here? ')
     // Recursively expand to all neighboring cells
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
             if ( i !== cellI || j !== cellJ) {
-                console.log('do you get to fullExpand')
                 fullExpand(i, j)
             }
 
