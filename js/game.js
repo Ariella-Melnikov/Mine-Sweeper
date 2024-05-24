@@ -70,6 +70,7 @@ function buildBoard() {
                 isShown: false,
                 isMine: false,
                 isMarked: false,
+                isExpended: false,
                 gameElement: null,
             }
 
@@ -136,8 +137,8 @@ function onCellClicked(cellI, cellJ, mouseButton) {
     var currCell = gBoard[cellI][cellJ]
 
     if (mouseButton === "left") {
-        if (currCell.isMarked) return
         if (!gGame.isOn) return
+        if (currCell.isMarked) return
 
         if (gHints.hintActive) {
             gHints.numOfHints--
