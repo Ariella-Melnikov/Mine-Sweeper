@@ -70,3 +70,7 @@ footer {
     width: 100%;
     color: #666;
 }
+
+.hints {
+    display: inline;
+}

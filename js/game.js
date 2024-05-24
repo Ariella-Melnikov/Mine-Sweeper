@@ -30,6 +30,7 @@ function onInit() {
         shownCount: 0,
         markedCount: 0,
         secsPassed: 0,
+        safeClickCounter: 3,
         isOn: true,
     }
 

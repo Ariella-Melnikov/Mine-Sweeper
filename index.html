@@ -17,9 +17,7 @@
         <input type="text" class="username" placeholder="Enter your username">
         <button onclick="storeUserInfo()">Save Username</button>
     </div>
-    <div class="hints">
-        <button class="hint1">💡</button>
-    </div>
+    
     <div class="modal">
         <h3 class="msg"></h3>
         <button class="restart-btn" onclick="onInit()">🙂</button>
@@ -30,6 +28,13 @@
         <button onclick="gameDifficulty(12, 30)">Expert</button>
     </div>
     <div class="result"></div>
+    <div class="game-buttons">
+        <div class="hints">
+            <button class="hint1">💡</button>
+        </div>
+        <button class="safeClick" onclick="safeClickBtn()">Safe Click</button>
+        <p class="safe-click-counter"> <span>3</span> click available</p>
+    </div>
     <table>
         <tbody class="board">
         </tbody>

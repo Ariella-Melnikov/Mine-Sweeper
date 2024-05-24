@@ -87,26 +87,44 @@ function displayStoredUserInfo() {
 }
 
 function fullExpand(cellI, cellJ) {
-    console.log('is it enter the full Expand?',cellI, cellJ)
+    console.log('is it enter the full Expand?', cellI, cellJ)
 
-    if (cellI < 0 || cellI >= gLevel.size || cellJ < 0 || cellJ >= gLevel.size) return 
+    if (cellI < 0 || cellI >= gLevel.size || cellJ < 0 || cellJ >= gLevel.size) return
     var cell = gBoard[cellI][cellJ]
 
     if (cell.isExpended) return
-    
+
     cell.isShown = true
     cell.isExpended = true
     renderCell({ i: cellI, j: cellJ }, cell.minesAroundCount === 0 ? EMPTY : cell.minesAroundCount)
-    if(cell.minesAroundCount !== 0 ) return 
+    if (cell.minesAroundCount !== 0) return
 
     // Recursively expand to all neighboring cells
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-            if ( i !== cellI || j !== cellJ) {
+            if (i !== cellI || j !== cellJ) {
                 fullExpand(i, j)
             }
 
         }
     }
- 
+
+}
+
+function safeClickBtn() {
+    if (gGame.safeClickCounter === 0) return
+
+    gGame.safeClickCounter--
+    // console.log('safeClickCounter', gGame.safeClickCounter)
+    document.querySelector('p.safe-click-counter span').innerText = gGame.safeClickCounter
+
+    var safeSpot = findEmptyPos(gBoard)
+    console.log('safeSpot', safeSpot)
+
+    var elCell = document.querySelector(`.cell-${safeSpot.i}-${safeSpot.j}`);
+    elCell.style.border = '2px solid black'
+
+    setTimeout(() => {
+        elCell.style.border = ''
+    }, 2000);
 }
