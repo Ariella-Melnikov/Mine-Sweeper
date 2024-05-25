@@ -130,4 +130,28 @@ function safeClickBtn() {
     }, 2000);
 }
 
+function toggleDarkMode() {
+    const darkModeStylesheet = document.querySelector('.dark-mode-link')
+    const darkModeToggleButton = document.querySelector('.dark-mode-toggle')
+    const isEnabled = !darkModeStylesheet.disabled;
 
+    darkModeStylesheet.disabled = isEnabled
+
+    if (isEnabled) {
+        darkModeToggleButton.innerText = 'Dark Mode'
+    } else {
+        darkModeToggleButton.innerText = 'Light Mode'
+    }
+    
+    if (darkModeStylesheet.disabled) {
+        localStorage.removeItem('.dark-mode-link')
+    } else {
+        localStorage.setItem('.dark-mode-link', 'enabled')
+    }
+}
+
+document.querySelector('.dark-mode-toggle').addEventListener('click', toggleDarkMode)
+
+if (localStorage.getItem('.dark-mode-link') === 'enabled') {
+    document.querySelector('.dark-mode-link').disabled = false
+}

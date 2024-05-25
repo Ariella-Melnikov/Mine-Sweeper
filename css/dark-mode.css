@@ -4,7 +4,8 @@
 
 body {
     font-family: 'Monas Regular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #b2d6fa;
+    background-color: #121212;
+    color: #e0e0e0;
     text-align: center;
     align-items: center;
 }
@@ -13,65 +14,61 @@ h1 {
     font-family: 'Poetsen One', sans-serif;
     font-size: 3em;
     margin: 20px 0;
-    color: #44d6d3;
+    color: #f5f8f8;
     text-shadow: 
-    -2px -2px 0 #fff,  
-    2px -2px 0 #fff,
-    -2px 2px 0 #fff,
-    2px 2px 0 #fff,
-    -2px 0 0 #fff,
-    2px 0 0 #fff,
-    0 -2px 0 #fff,
-    0 2px 0 #fff;
-    
+    -2px -2px 0 #333,  
+    2px -2px 0 #333,
+    -2px 2px 0 #333,
+    2px 2px 0 #333,
+    -2px 0 0 #333,
+    2px 0 0 #333,
+    0 -2px 0 #333,
+    0 2px 0 #333;
 }
 
 h2 {
     font-family: 'Poetsen One', sans-serif;
     font-size: 1.5em;
     margin: 10px;
-    /* color: #44d6d3; */
-    color: #5f8ad8;
+    color: hwb(180 88% 7%);
     text-shadow: 
-    -2px -2px 0 #fff,  
-    2px -2px 0 #fff,
-    -2px 2px 0 #fff,
-    2px 2px 0 #fff,
-    -2px 0 0 #fff,
-    2px 0 0 #fff,
-    0 -2px 0 #fff,
-    0 2px 0 #fff;
+    -2px -2px 0 #333,  
+    2px -2px 0 #333,
+    -2px 2px 0 #333,
+    2px 2px 0 #333,
+    -2px 0 0 #333,
+    2px 0 0 #333,
+    0 -2px 0 #333,
+    0 2px 0 #333;
     display: inline-block;
-
 }
 
 h2 span {
-    /* color: #5f8ad8; */
-    color: #b2d6fa;
+    color: #929394;
     text-shadow: 
-    -2px -2px 0 #103d91,  
-    2px -2px 0 #103d91,
-    -2px 2px 0 #103d91,
-    2px 2px 0 #103d91,
-    -2px 0 0 #103d91,
-    2px 0 0 #103d91,
-    0 -2px 0 #103d91,
-    0 2px 0 #103d91;
-    border-color: #103d91;
-
+    -2px -2px 0 #333,  
+    2px -2px 0 #333,
+    -2px 2px 0 #333,
+    2px 2px 0 #333,
+    -2px 0 0 #333,
+    2px 0 0 #333,
+    0 -2px 0 #333,
+    0 2px 0 #333;
+    border-color: #07080a;
 }
 
 .user-info input {
     padding: 10px;
     border-radius: 50px;
-    border: 2.5px solid #5f8ad8;
-    color: #103d91;
+    border: 2.5px solid #6d6d6e;
+    background-color: #333;
+    color: #e0e0e0;
     margin-right: 10px;
 }
 
 .user-info button {
-    background-color: #5f8ad8;
-    color: white;
+    background-color: #8c8d8f;
+    color: #e0e0e0;
     border: none;
     border-radius: 50px;
     padding: 10px 20px;
@@ -80,7 +77,7 @@ h2 span {
 }
 
 .user-info button:hover {
-    background-color: #ff6c5a;
+    background-color: #554745;
     transform: scale(1.05);
 }
 
@@ -88,13 +85,13 @@ h2 span {
     font-family: 'Teachers', sans-serif;
     font-weight: bold;
     font-size: 1.2em;
-    color: #d94848;
-    padding: 5px
+    color: #b8b3b2;
+    padding: 5px;
 }
 
 .game-buttons button {
-    background-color:#5f8ad8;
-    color: white;
+    background-color: #8c8d8f;
+    color: #e0e0e0;
     border: none;
     border-radius: 50px;
     font-size: 1rem;
@@ -107,7 +104,7 @@ h2 span {
 }
 
 .game-buttons button:hover {
-    background-color: #ff6c5a;
+    background-color: #554745;
     transform: scale(1.05);
 }
 
@@ -121,12 +118,12 @@ h2 span {
     font-family: 'Teachers', sans-serif;
     font-weight: bold;
     font-size: 1.2em;
-    color: #d94848;
-    padding: 5px
+    color: #4e403f;
+    padding: 5px;
 }
 
 .hints .hint-button {
-    background-color: #5f8ad8; 
+    background-color: #8c8d8f;
     border: none; 
     border-radius: 50px;
     font-size: 1rem;
@@ -135,16 +132,17 @@ h2 span {
     margin-bottom: 5px;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s, transform 0.2s;}
+    transition: background-color 0.3s, transform 0.2s;
+}
 
 .hints .hint-button:hover {
-    background-color: #ff6c5a; 
+    background-color: #554745; 
     transform: scale(1.05); 
 }
 
 .restart-btn {
     font-size: 2em;
-    background-color: aliceblue;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -153,7 +151,7 @@ h2 span {
 }
 
 .restart-btn:hover {
-    background-color: #27ae60;
+    background-color: #554745;
 }
 
 table {
@@ -170,7 +168,7 @@ table {
 .cell {
     width: 40px;
     height: 40px;
-    border: 2px solid #e6f8f8; 
+    border: 2px solid #444; 
     font-size: 18px;
     text-align: center;
     cursor: pointer;
@@ -179,24 +177,24 @@ table {
 }
 
 .cell.not-showed {
-    background: linear-gradient(to bottom right, #44d6d3, #acf7f5);
+    background: linear-gradient(to bottom right, #333, #555);
 }
 
 .cell.showed {
-    background: linear-gradient(to bottom right, #ffe5d4, #ffecf5);
+    background: linear-gradient(to bottom right, #444, #666);
 }
 
 .cell:hover {
-    background: linear-gradient(to bottom right, #f2a057, #ffcd5a);
+    background: linear-gradient(to bottom right, #666, #888);
 }
 
 .mine-cell {
-    background: linear-gradient(to bottom right, #d94848, #d94848);
+    background: linear-gradient(to bottom right, #d94848, #b03030);
 }
 
 .dark-mode-toggle {
-    background-color: #5f8ad8; 
-    color: whitesmoke;
+    background-color: #8c8d8f;
+    color: #e0e0e0;
     border: none; 
     border-radius: 50px;
     font-size: 1rem;
@@ -209,8 +207,8 @@ table {
 }
 
 .dark-mode-toggle:hover {
-    background-color: #ff6c5a; 
-    transform: scale(1.05); 
+    background-color: #554745;
+    transform: scale(1.05);
 }
 
 footer {
@@ -218,7 +216,7 @@ footer {
     bottom: 10px;
     text-align: center;
     width: 100%;
-    color: #d94848;
+    color: #e0e0e0;
     margin-top: 20px;
 }
 
