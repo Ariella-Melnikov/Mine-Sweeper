@@ -7,6 +7,7 @@ function addHintBtns(numHints) {
     for (var i = 0; i < numHints; i++) {
         var elHintButton = document.createElement('button' + i + 1)
         elHintButton.innerText = HINT
+        elHintButton.classList.add('hint-button')
         elHintButton.addEventListener('click', handleHintClick)
         hintContainer.appendChild(elHintButton)
     }

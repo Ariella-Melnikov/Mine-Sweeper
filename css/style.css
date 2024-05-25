@@ -3,16 +3,157 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #c6dcf5;
+    font-family: 'Monas Regular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #b2d6fa;
     text-align: center;
     align-items: center;
-
 }
 
 h1 {
+    font-family: 'Poetsen One', sans-serif;
+    font-size: 3em;
     margin: 20px 0;
-    color: #333;
+    color: #44d6d3;
+    text-shadow: 
+    -2px -2px 0 #fff,  
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff,
+    -2px 0 0 #fff,
+    2px 0 0 #fff,
+    0 -2px 0 #fff,
+    0 2px 0 #fff;
+    
+}
+
+h2 {
+    font-family: 'Poetsen One', sans-serif;
+    font-size: 1.5em;
+    margin: 10px;
+    /* color: #44d6d3; */
+    color: #5f8ad8;
+    text-shadow: 
+    -2px -2px 0 #fff,  
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff,
+    -2px 0 0 #fff,
+    2px 0 0 #fff,
+    0 -2px 0 #fff,
+    0 2px 0 #fff;
+    display: inline-block;
+
+}
+
+h2 span {
+    /* color: #5f8ad8; */
+    color: #b2d6fa;
+    text-shadow: 
+    -2px -2px 0 #103d91,  
+    2px -2px 0 #103d91,
+    -2px 2px 0 #103d91,
+    2px 2px 0 #103d91,
+    -2px 0 0 #103d91,
+    2px 0 0 #103d91,
+    0 -2px 0 #103d91,
+    0 2px 0 #103d91;
+    border-color: #103d91;
+
+}
+
+.user-info input {
+    padding: 10px;
+    border-radius: 50px;
+    border: 2.5px solid #5f8ad8;
+    color: #103d91;
+    margin-right: 10px;
+}
+
+.user-info button {
+    background-color: #5f8ad8;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.user-info button:hover {
+    background-color: #ff6c5a;
+    transform: scale(1.05);
+}
+
+.result {
+    font-family: 'Teachers', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #d94848;
+    padding: 5px
+}
+
+.game-buttons button {
+    background-color:#5f8ad8;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.game-buttons button:hover {
+    background-color: #ff6c5a;
+    transform: scale(1.05);
+}
+
+.inline-container button,
+.inline-container p {
+    display: inline-block; 
+    margin-right: 10px; 
+}
+
+.safe-click-counter {
+    font-family: 'Teachers', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #d94848;
+    padding: 5px
+}
+
+.hints .hint-button {
+    background-color: #5f8ad8; 
+    border: none; 
+    border-radius: 50px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;}
+
+.hints .hint-button:hover {
+    background-color: #ff6c5a; 
+    transform: scale(1.05); 
+}
+
+.restart-btn {
+    font-size: 2em;
+    background-color: aliceblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 5px;
+}
+
+.restart-btn:hover {
+    background-color: #27ae60;
 }
 
 table {
@@ -27,48 +168,39 @@ table {
 }
 
 .cell {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #c8c8c8;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e6f8f8; 
     font-size: 18px;
     text-align: center;
     cursor: pointer;
-    background-color: #e0e0e0;
-    transition: background-color 0.3s;
-
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .cell.not-showed {
-    background-color: #d0d0d0;
+    background: linear-gradient(to bottom right, #44d6d3, #acf7f5);
 }
 
 .cell.showed {
-    background-color: hsl(315, 29%, 97%);
+    background: linear-gradient(to bottom right, #ffe5d4, #ffecf5);
 }
 
 .cell:hover {
-    background-color: #f39c12;
+    background: linear-gradient(to bottom right, #f2a057, #ffcd5a);
 }
 
-.restart-btn {
-    font-size: 1.5rem;
-    background-color: aliceblue;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.restart-btn:hover {
-    background-color: #27ae60;
+.mine-cell {
+    background: linear-gradient(to bottom right, #d94848, #d94848);
 }
 
 footer {
-    position: fixed;
+    position:relative;
     bottom: 10px;
     text-align: center;
     width: 100%;
-    color: #666;
+    color: #d94848;
+    margin-top: 20px;
 }
 
 .hints {

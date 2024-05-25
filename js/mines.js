@@ -53,7 +53,7 @@ function renderMineCell(location) {
     const cellSelector = `.${getClassName(location)}`
     const elCell = document.querySelector(cellSelector)
     elCell.innerHTML = MINE
-    elCell.style.backgroundColor = 'red'
+    elCell.classList.add('mine-cell')
 }
 
 function revelAllMines() {
