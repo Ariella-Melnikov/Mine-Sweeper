@@ -17,8 +17,13 @@ function initMinesInBoard(cellI, cellJ) {
     if (gGame.isMineInit) {
         return
     }
+    var manualPlacement = confirm("Do you want to place mines manually? Click 'OK' for Yes, 'Cancel' for No.");
+    if (manualPlacement) {
+        addMinesManually(gLevel.mines, gBoard)
+    } else {
+        addMines(gLevel.mines, gBoard)
+    } 
 
-    addMines(gLevel.mines, gBoard)
     var currCell = gBoard[cellI][cellJ]
     if (currCell.isMine) {
         gMinesCount = 0
@@ -27,11 +32,9 @@ function initMinesInBoard(cellI, cellJ) {
         return initMinesInBoard(cellI, cellJ)
     }
 
-
     gGame.isMineInit = true
     gStartTime = Date.now()
     gTimerInterval = setInterval(updateTimer, 1000)
-    // addHintBtns()
 }
 
 function handleMineClicked(cellI, cellJ) {
@@ -93,6 +96,35 @@ function addMines(amountOfMinesToAdd, board) {
     }
 }
 
+function addMinesManually(amountOfMinesToAdd, board) {
+    for (var i = 0; i < amountOfMinesToAdd; i++) {
+        var userInput = prompt("Enter mine position (format: row,column):")
+        var pos = userInput.split(",")
+        var row = parseInt(pos[0])-1
+        var col = parseInt(pos[1])-1
+        console.log(row,col)
+
+        if (isNaN(row) || isNaN(col) || row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
+            alert("Invalid position! Please try again.")
+            i-- 
+            continue
+        }
+
+        if (board[row][col].isMine) {
+            alert("Position already contains a mine! Please try again.")
+            i--; 
+            continue
+        }
+
+        placeMine(board, row, col)
+    }
+
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            board[i][j].minesAroundCount = setMinesNegsCount(i, j, board)
+        }
+    }
+}
 
 function findEmptyPos(board) {
     var emptyPoss = []

@@ -129,3 +129,5 @@ function safeClickBtn() {
         elCell.style.border = ''
     }, 2000);
 }
+
+
