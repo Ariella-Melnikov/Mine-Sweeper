@@ -26,8 +26,8 @@ function initMinesInBoard(cellI, cellJ) {
 
     var currCell = gBoard[cellI][cellJ]
     if (currCell.isMine) {
-        gMinesCount = 0
-        gFlagCount = 0
+        gGame.minesCount = 0
+        gGame.flagCount = 0
         gBoard = buildBoard()
         return initMinesInBoard(cellI, cellJ)
     }
@@ -38,13 +38,13 @@ function initMinesInBoard(cellI, cellJ) {
 }
 
 function handleMineClicked(cellI, cellJ) {
-    if (gLivesCount !== 0) {
+    if (gGame.livesCount !== 0) {
         updateLivesCount(-1)
         updateMineCount(-1)
         renderMineCell({ i: cellI, j: cellJ })
 
     }
-    if (gLivesCount === 0) {
+    if (gGame.livesCount === 0) {
         renderMineCell({ i: cellI, j: cellJ })
         gameOver()
         return
@@ -52,11 +52,18 @@ function handleMineClicked(cellI, cellJ) {
 
 }
 
-function renderMineCell(location) {
+function renderMineCell(location, isMine = true) {
     const cellSelector = `.${getClassName(location)}`
     const elCell = document.querySelector(cellSelector)
-    elCell.innerHTML = MINE
-    elCell.classList.add('mine-cell')
+    if(isMine) {
+        elCell.innerHTML = MINE
+        elCell.style.background = 'linear-gradient(to bottom right, #d94848, #d94848)'
+        elCell.classList.add('mine-cell')
+    } else {
+        elCell.innerHTML = EMPTY
+        elCell.style.background = ''
+        elCell.classList.remove('mine-cell')
+    }
 }
 
 function revelAllMines() {
@@ -72,8 +79,8 @@ function revelAllMines() {
 }
 
 function updateMineCount(diff) {
-    gMinesCount += diff
-    console.log('gMinesCount', gMinesCount)
+    gGame.minesCount += diff
+    console.log('gGame.minesCount', gGame.minesCount)
 }
 
 function placeMine(board, i, j) {

@@ -101,6 +101,7 @@ h2 span {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, transform 0.2s;
+    display: inline-block; 
 }
 
 .game-buttons button:hover {
@@ -118,7 +119,7 @@ h2 span {
     font-family: 'Teachers', sans-serif;
     font-weight: bold;
     font-size: 1.2em;
-    color: #4e403f;
+    color: #b8b3b2;
     padding: 5px;
 }
 
@@ -181,7 +182,7 @@ table {
 }
 
 .cell.showed {
-    background: linear-gradient(to bottom right, #444, #666);
+    background: linear-gradient(to bottom right, #8a8787, #dad7d7);
 }
 
 .cell:hover {

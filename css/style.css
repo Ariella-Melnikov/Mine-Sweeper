@@ -142,6 +142,10 @@ h2 span {
     transform: scale(1.05); 
 }
 
+.hints {
+    display: inline;
+}
+
 .restart-btn {
     font-size: 2em;
     background-color: aliceblue;
@@ -175,7 +179,7 @@ table {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5); 
 }
 
 .cell.not-showed {
@@ -184,6 +188,7 @@ table {
 
 .cell.showed {
     background: linear-gradient(to bottom right, #ffe5d4, #ffecf5);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .cell:hover {
@@ -192,6 +197,7 @@ table {
 
 .mine-cell {
     background: linear-gradient(to bottom right, #d94848, #d94848);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .dark-mode-toggle {
@@ -222,6 +228,3 @@ footer {
     margin-top: 20px;
 }
 
-.hints {
-    display: inline;
-}
