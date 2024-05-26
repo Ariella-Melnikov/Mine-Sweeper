@@ -51,33 +51,24 @@ function createMat(rows, cols = rows) {
     return board
 }
 
-function findEmptyPos() {
-    // var emptyPoss = [{i:0,j:0},{i:0,j:1}]
+function renderCell(location, value) {
+    const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
+    elCell.innerText = value
+}
+function findEmptyPos(board) {
     var emptyPoss = []
 
-    for (var i = 0; i < gBoard.length; i++) {
-        for (var j = 0; j < gBoard.length; j++) {
-            var cell = gBoard[i][j]
-            if (!cell) {
-                // console.log('cell:', cell)
+    for (var i = 0; i < board.length; i++) {
+        for (var j = 0; j < board[i].length; j++) {
+            if (!board[i][j].isMine && !board[i][j].isShown) {
                 var pos = { i: i, j: j }
                 emptyPoss.push(pos)
             }
         }
     }
-    // console.log('emptyPoss:', emptyPoss)
     var randIdx = getRandomInt(0, emptyPoss.length) // 0 , 1
-    // console.log('randIdx:', randIdx)
-    var randPos = emptyPoss[randIdx] //{}
-    // console.log('randPos:', randPos)
+    var randPos = emptyPoss[randIdx]
     return randPos
-}
-
-function renderCell(location, value) {
-    // Select the elCell and set the value
-    const elCell = document.querySelector(`.cell-${location.i}-${location.j}`)
-    elCell.innerText = value
-    // elCell.classList.add('revealed')
 }
 
 

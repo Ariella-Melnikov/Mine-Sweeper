@@ -1,65 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link class="dark-mode-link" rel="stylesheet" href="css/dark-mode.css" disabled>
-    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Teachers&display=swap" rel="stylesheet">
-
-    <!-- <link rel="stylesheet" href="css/newStyle.css"> -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link class="dark-mode-link" rel="stylesheet" href="css/dark-mode.css" disabled/>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Teachers&display=swap" rel="stylesheet" />
 
     <title>Sprint 1- Mine Sweeper</title>
-</head>
+  </head>
 
-<body onload="onInit()">
+  <body onload="onInit()">
     <h1>Mine Sweeper</h1>
     <h2 class="total-flag">Total Flags: <span>0</span></h2>
     <h2>Time: <span id="timer">0</span></h2>
     <h2 class="lives-left"><span>3</span> Lives left</h2>
     <div class="user-info">
-        <input type="text" class="username" placeholder="Enter your username">
-        <button onclick="storeUserInfo()">Save Username</button>
-        <div class="result"></div>
+      <input type="text" class="username" placeholder="Enter your username" />
+      <button onclick="storeUserInfo()">Save Username</button>
+      <div class="result"></div>
     </div>
     <div class="game-buttons">
-        <div class="display-buttons" style="display: block;">
-            <button onclick="gameDifficulty(4, 2)">Beginner </button>
-            <button onclick="gameDifficulty(8, 10)">Medium</button>
-            <button onclick="gameDifficulty(12, 30)">Expert</button>
+      <div class="display-buttons" style="display: block">
+        <button onclick="gameDifficulty('Beginner', 4, 2)">Beginner</button>
+        <button onclick="gameDifficulty('Medium', 8, 10)">Medium</button>
+        <button onclick="gameDifficulty('Expert', 12, 30)">Expert</button>
+      </div>
+      <div class="inline-container">
+        <button class="undo-btn" onclick="undo()">Undo</button>
+        <div class="hints">
+          <button class="hint1">💡</button>
         </div>
-        <div class="inline-container">
-            <button class="undo-btn" onclick="undo()">Undo</button>
-            <div class="hints">
-                <button class="hint1">💡</button>
-            </div>
-            <button class="mega-hint" onclick="megaHintBtnClick()"> Mega Hint!</button>
-            <button class="safeClick" onclick="safeClickBtn()">Safe Click</button>
-            <p class="safe-click-counter"> <span>3</span> click available</p>
-        </div>
-        <div class="restart">
-            <h3 class="msg"></h3>
-            <button class="restart-btn" onclick="onInit()">🙂</button>
-        </div>
+        <button class="mega-hint" onclick="megaHintBtnClick()">
+          Mega Hint!
+        </button>
+        <button class="safeClick" onclick="safeClickBtn()">Safe Click</button>
+        <p class="safe-click-counter"><span>3</span> click available</p>
+      </div>
+      <div class="restart">
+        <h3 class="msg"></h3>
+        <button class="restart-btn" onclick="onInit()">🙂</button>
+      </div>
     </div>
     <table>
-        <tbody class="board">
-        </tbody>
+      <tbody class="board"></tbody>
     </table>
 
     <button class="dark-mode-toggle">Dark Mode</button>
 
     <footer>
-        <p>Developed by Ariella Melnikov</p>
+      <p>Developed by Ariella Melnikov</p>
     </footer>
 
     <script src="js/utile.js"></script>
     <script src="js/game.js"></script>
     <script src="js/mines.js"></script>
-    <script src="js/bonus.js"></script>
-
-</body>
-
+    <script src="js/buttons.js"></script>
+  </body>
 </html>
